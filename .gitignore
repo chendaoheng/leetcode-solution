@@ -1,3 +1,16 @@
+# Ide project file
+*/.settings
+/target/
+*.prefs
+.factorypath
+.classpath
+.project
+/.metadata/
+.idea/
+*.iml
+target/
+rebel.xml
+
 # Compiled class file
 *.class
 
