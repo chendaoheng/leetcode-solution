@@ -31,7 +31,6 @@ public class Solution1 {
                     result[0] = i;
                     result[1] = j;
                     break v;
-
                 }
             }
         }
