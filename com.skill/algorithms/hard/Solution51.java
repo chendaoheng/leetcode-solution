@@ -41,38 +41,64 @@ public class Solution51 {
      * 链接：https://leetcode-cn.com/problems/n-queens
      * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      */
-    private int[] queens;//用于存储符合情况的N皇后
-    private List<List<String>> result = new ArrayList<List<String>>();//结果集
+
+    /**
+     * 用于存储符合情况的N皇后
+     */
+    private int[] queens;
+
+    /**
+     * 结果集
+     */
+    private List<List<String>> result = new ArrayList<List<String>>();
 
     public List<List<String>> solveNQueens(int n) {
         queens = new int[n];
-        calQueens(0);//从第一列开始尝试
+        //从第一列开始尝试
+        calQueens(0);
         return result;
     }
 
+    /**
+     * 尝试
+     *
+     * @param row 尝试的行
+     */
     private void calQueens(int row) {
-        if (row == queens.length) {//如果N列都摆好了就可以终止尝试了
+        //如果N列都摆好了就可以终止尝试了
+        if (row == queens.length) {
             result.add(getQueens(queens));
             return;
         }
         for (int col = 0; col < queens.length; ++col) {
             if (isOk(row, col)) {
                 queens[row] = col;
-                calQueens(row + 1);//上一列摆好了尝试下一列
+                //上一列摆好了尝试下一列
+                calQueens(row + 1);
             }
         }
 
     }
 
-    private boolean isOk(int row, int col) {//判断是否可以摆放皇后，row,col坐标是否可以摆放。
+    /**
+     * 判断是否可以摆放皇后
+     *
+     * @param row 行
+     * @param col 列
+     * @return 判断结果
+     */
+    private boolean isOk(int row, int col) {
         int leftup = col - 1, rightup = col + 1;
         for (int i = row - 1; i >= 0; --i) {
-            if (queens[i] == col) return false;//判断该列是否已有皇后
+            //判断该列是否已有皇后
+            if (queens[i] == col) return false;
             if (leftup >= 0) {
-                if (queens[i] == leftup) return false;//左上角是否已有皇后
+                //左上角是否已有皇后
+                if (queens[i] == leftup) return false;
             }
             if (rightup < queens.length) {
-                if (queens[i] == rightup) return false;//右上角是否已有皇后
+                //右上角是否已有皇后
+                if (queens[i] == rightup) return false;
             }
             --leftup;
             ++rightup;
@@ -80,7 +106,13 @@ public class Solution51 {
         return true;
     }
 
-    private List<String> getQueens(int[] queens) {//按题目要求获取字符串集合。不含N皇后逻辑
+    /**
+     * 按题目要求获取字符串集合。不含N皇后逻辑
+     *
+     * @param queens 格式化前的皇后记录
+     * @return 格式化后的皇后列表
+     */
+    private List<String> getQueens(int[] queens) {//
         StringBuilder sb;
         List<String> list = new ArrayList<>();
         for (int row = 0; row < queens.length; ++row) {
